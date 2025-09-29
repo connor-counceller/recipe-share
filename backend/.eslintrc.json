@@ -12,10 +12,5 @@
   "extends": [
     "eslint:recommended",
     "prettier"
-  ],
-  "overrides": [
-    {
-      "files": ["*.js", "*.jsx"]
-    }
   ]
 }
