@@ -5,14 +5,14 @@ import { PostSorting } from './components/PostSorting.jsx'
 import { useQuery } from '@tanstack/react-query'
 import { getPosts } from './api/posts.js'
 
-const postsQuery = useQuery({
-  queryKey: ['posts'],
-  queryFn: () => getPosts(),
-})
-
-const posts = postsQuery.data ?? []
-
 export function Blog() {
+  const postsQuery = useQuery({
+    queryKey: ['posts'],
+    queryFn: () => getPosts(),
+  })
+
+  const posts = postsQuery.data ?? []
+
   return (
     <div style={{ padding: 8 }}>
       <CreatePost />
