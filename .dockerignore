@@ -1,0 +1,6 @@
+.env\*
+backend
+.vscode
+.git
+.husky
+.commitlintrc.json

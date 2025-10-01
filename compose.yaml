@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  recipe-share-database:
+    image: mongo
+    ports:
+      - '27017:27017'
+  recipe-share-backend:
+    build: backend/
+    environment:
+      - PORT=3000
+      - DATABASE_URL=mongodb://recipe-share-database:27017/recipe-share
+    ports:
+      - '3000:3000'
+    depends_on:
+      - recipe-share-database
+  recipe-share-frontend:
+    build:
+      context: .
+      args:
+        VITE_BACKEND_URL: http://localhost:3000/api/v1
+    ports:
+      - '3001:80'
+    depends_on:
+      - recipe-share-backend
