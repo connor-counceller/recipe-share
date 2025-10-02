@@ -4,14 +4,17 @@ export function Recipe({ title, ingredients, image, author }) {
   return (
     <article>
       <h3>{title}</h3>
-      <div>{ingredients}</div>
+      <div>Ingredients: {ingredients}</div>
+      <br />
+      <div>
+        Image URL: <a href={image}> {image}</a>
+      </div>
+      <br />
       {author && (
         <em>
-          <br />
           Written by <strong>{author}</strong>
         </em>
       )}
-      <div>{image}</div>
     </article>
   )
 }
