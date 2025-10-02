@@ -6,8 +6,7 @@
   "scripts": {
     "start": "nodemon src/index.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "lint": "eslint src",
-    "prepare": "husky install"
+    "lint": "eslint src"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
