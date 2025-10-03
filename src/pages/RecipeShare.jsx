@@ -5,11 +5,15 @@ import { RecipeSorting } from '../components/RecipeSorting.jsx'
 import { Header } from '../components/Header.jsx'
 import { useQuery } from '@tanstack/react-query'
 import { getRecipes } from '../api/recipes.js'
+import { useState } from 'react'
 
 export function RecipeShare() {
+  const [author, setAuthor] = useState('')
+  const [sortBy, setSortBy] = useState('createdAt')
+  const [sortOrder, setSortOrder] = useState('descending')
   const recipesQuery = useQuery({
-    queryKey: ['recipes'],
-    queryFn: () => getRecipes(),
+    queryKey: ['recipes', { author, sortBy, sortOrder }],
+    queryFn: () => getRecipes({ author, sortBy, sortOrder }),
   })
 
   const recipes = recipesQuery.data ?? []
@@ -25,9 +29,21 @@ export function RecipeShare() {
       <br />
       <hr />
       Filter by:
-      <RecipeFilter field='author' />
       <br />
-      <RecipeSorting fields={['createdAt', 'updatedAt']} />
+      <br />
+      <RecipeFilter
+        field='Author'
+        value={author}
+        onChange={(value) => setAuthor(value)}
+      />
+      <br />
+      <RecipeSorting
+        fields={['createdAt', 'updatedAt']}
+        value={sortBy}
+        onChange={(value) => setSortBy(value)}
+        orderValue={sortOrder}
+        onOrderChange={(orderValue) => setSortOrder(orderValue)}
+      />
       <hr />
       <RecipeList recipes={recipes} />
     </div>

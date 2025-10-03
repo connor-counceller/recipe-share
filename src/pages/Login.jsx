@@ -11,11 +11,10 @@ export function Login() {
   const navigate = useNavigate()
   const loginMutation = useMutation({
     mutationFn: () => login({ username, password }),
-    onSuccess: () => (data) => {
+    onSuccess: (data) => {
       setToken(data.token)
       navigate('/')
     },
-
     onError: () => alert('failed to log in!'),
   })
   const handleSubmit = (e) => {
@@ -24,7 +23,14 @@ export function Login() {
   }
   return (
     <form onSubmit={handleSubmit}>
+      <div>
+        <h1>Login</h1>
+      </div>
+      <hr />
+      <br />
       <Link to='/'>Back to main page</Link>
+      <hr />
+      <br />
       <div>
         <label htmlFor='create-username'>Username: </label>
         <input
@@ -49,7 +55,7 @@ export function Login() {
       <br />
       <input
         type='submit'
-        value={loginMutation.isPending ? 'Loggin in...' : 'Log In'}
+        value={loginMutation.isPending ? 'Logging in...' : 'Log In'}
         disabled={!username || !password || loginMutation.isPending}
       />
     </form>

@@ -1,4 +1,5 @@
 import { Recipe } from '../db/models/recipe.js'
+import { User } from '../db/models/user.js'
 
 export async function createRecipe(
   userId,
@@ -19,8 +20,10 @@ export async function listAllRecipes(options) {
   return await listRecipes({}, options)
 }
 
-export async function listRecipesByAuthor(author, options) {
-  return await listRecipes({ author }, options)
+export async function listRecipesByAuthor(authorUsername, options) {
+  const user = await User.findOne({ username: authorUsername })
+  if (!user) return []
+  return await listRecipes({ author: user.id }, options)
 }
 
 export async function listRecipesByTag(tags, options) {
