@@ -2,14 +2,35 @@ import { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Recipe } from './Recipe.jsx'
 import { DeleteRecipe } from './DeleteRecipe.jsx'
+import { jwtDecode } from 'jwt-decode'
+import { useAuth } from '../contexts/AuthContext.jsx'
 
 export function RecipeList({ recipes = [] }) {
+  const [token] = useAuth()
+
+  if (token) {
+    const { sub } = jwtDecode(token)
+    const currentUser = { sub }
+
+    return (
+      <div>
+        {recipes.map((recipe) => (
+          <Fragment key={recipe._id}>
+            <Recipe {...recipe} />
+            {currentUser.sub === recipe.author && (
+              <DeleteRecipe recipeId={recipe._id} />
+            )}
+            <hr />
+          </Fragment>
+        ))}
+      </div>
+    )
+  }
   return (
     <div>
       {recipes.map((recipe) => (
         <Fragment key={recipe._id}>
           <Recipe {...recipe} />
-          <DeleteRecipe recipeId={recipe._id} />
           <hr />
         </Fragment>
       ))}
