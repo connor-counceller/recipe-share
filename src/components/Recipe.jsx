@@ -16,6 +16,7 @@ export function Recipe({ title, ingredients, image, author }) {
           Written by <User id={author} />
         </em>
       )}
+      <br />
     </article>
   )
 }

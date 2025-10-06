@@ -23,14 +23,15 @@ export function RecipeShare() {
       <Header />
       <br />
       <hr />
-      <br />
-      <h1>Welcome to RecipeShare!</h1>
+      <h2>
+        <u>Create New Recipe</u>
+      </h2>
       <CreateRecipe />
       <br />
       <hr />
-      Filter by:
-      <br />
-      <br />
+      <h2>
+        <u>Sorting and Filters</u>
+      </h2>
       <RecipeFilter
         field='Author'
         value={author}
@@ -44,7 +45,11 @@ export function RecipeShare() {
         orderValue={sortOrder}
         onOrderChange={(orderValue) => setSortOrder(orderValue)}
       />
+      <br />
       <hr />
+      <h2>
+        <u>Recipes</u>
+      </h2>
       <RecipeList recipes={recipes} />
     </div>
   )

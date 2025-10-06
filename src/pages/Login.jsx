@@ -25,10 +25,9 @@ export function Login() {
     <form onSubmit={handleSubmit}>
       <div>
         <h1>Login</h1>
+        <Link to='/'>Back to main page</Link>
       </div>
-      <hr />
       <br />
-      <Link to='/'>Back to main page</Link>
       <hr />
       <br />
       <div>

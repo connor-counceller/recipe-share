@@ -17,10 +17,11 @@ export function RecipeList({ recipes = [] }) {
         {recipes.map((recipe) => (
           <Fragment key={recipe._id}>
             <Recipe {...recipe} />
+            <br />
             {currentUser.sub === recipe.author && (
               <DeleteRecipe recipeId={recipe._id} />
             )}
-            <hr />
+            --------------------------------------------------------------------------------
           </Fragment>
         ))}
       </div>
@@ -31,7 +32,7 @@ export function RecipeList({ recipes = [] }) {
       {recipes.map((recipe) => (
         <Fragment key={recipe._id}>
           <Recipe {...recipe} />
-          <hr />
+          ________________________________________________________
         </Fragment>
       ))}
     </div>

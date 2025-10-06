@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 export function RecipeFilter({ field, value, onChange }) {
   return (
     <div>
-      <label htmlFor={`filter-${field}`}>{field}: </label>
+      Filter By:
+      <br />
+      <label htmlFor={`filter-${field}`}>{field} = </label>
       <input
         type='text'
         name={`filter-${field}`}

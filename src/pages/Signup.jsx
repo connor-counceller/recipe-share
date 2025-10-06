@@ -18,7 +18,13 @@ export function Signup() {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <Link to='/'>Back to main page</Link>
+      <div>
+        <h1>Signup</h1>
+        <Link to='/'>Back to main page</Link>
+      </div>
+      <br />
+      <hr />
+      <br />
       <div>
         <label htmlFor='create-username'>Username: </label>
         <input

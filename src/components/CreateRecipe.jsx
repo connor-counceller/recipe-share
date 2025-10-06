@@ -17,7 +17,8 @@ export function CreateRecipe() {
     e.preventDefault()
     createRecipeMutation.mutate()
   }
-  if (!token) return <div>Please log in to create new posts.</div>
+  if (!token)
+    return <div>Please log in to create and manage your recipes. </div>
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -59,10 +60,7 @@ export function CreateRecipe() {
         disabled={!title || createRecipeMutation.isPending}
       />
       {createRecipeMutation.isSuccess ? (
-        <>
-          <br />
-          Recipe created successfully!
-        </>
+        <>Recipe created successfully!</>
       ) : null}
     </form>
   )
