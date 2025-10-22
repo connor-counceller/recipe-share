@@ -5,11 +5,11 @@ export function Recipe({ title, ingredients, image, author }) {
   return (
     <article>
       <h3>{title}</h3>
-      <div>Ingredients: {ingredients}</div>
-      <br />
       <div>
-        Image URL: <a href={image}> {image}</a>
+        <img src={image} style={{ width: 320 }} alt={image} />
       </div>
+      <br />
+      <div>Ingredients: {ingredients}</div>
       <br />
       {author && (
         <em>
