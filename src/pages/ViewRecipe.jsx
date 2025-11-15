@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Header } from '../components/Header.jsx'
 import { Recipe } from '../components/Recipe.jsx'
 import { getRecipeById } from '../api/recipes.js'
+import { getUserInfo } from '../api/users.js'
 import { Helmet } from 'react-helmet-async'
 
 export function ViewRecipe({ recipeId }) {
@@ -13,6 +14,12 @@ export function ViewRecipe({ recipeId }) {
   })
 
   const recipe = recipeQuery.data
+  const userInfoQuery = useQuery({
+    queryKey: ['users', recipe?.author],
+    queryFn: () => getUserInfo(recipe?.author),
+    enabled: Boolean(recipe?.author),
+  })
+  const userInfo = userInfoQuery.data ?? {}
 
   function truncate(str, max = 160) {
     if (!str) return str
@@ -29,6 +36,20 @@ export function ViewRecipe({ recipeId }) {
         <Helmet>
           <title>{recipe.title} | RecipeShare</title>
           <meta name='description' content={truncate(recipe.ingrediants)} />
+          <meta property='og:type' content='article' />
+          <meta property='og:title' content={recipe.title} />
+          <meta
+            property='og:article:published_time'
+            content={recipe.createdAt}
+          />
+          <meta
+            property='og:article:modified_time'
+            content={recipe.updatedAt}
+          />
+          <meta property='og:article:author' content={userInfo.username} />
+          {(recipe.tags ?? []).map((tag) => (
+            <meta key={tag} property='og:article:tag' content={tag} />
+          ))}
         </Helmet>
       )}
       <Header />
