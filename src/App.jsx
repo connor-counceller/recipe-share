@@ -1,32 +1,17 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RecipeShare } from './pages/RecipeShare.jsx'
-import { Signup } from './pages/Signup.jsx'
-import { Login } from './pages/Login.jsx'
 import { AuthContextProvider } from './contexts/AuthContext.jsx'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const queryClient = new QueryClient()
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RecipeShare />,
-  },
-  {
-    path: '/signup',
-    element: <Signup />,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-])
 
-export function App() {
+export function App({ children }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        <RouterProvider router={router} />
-      </AuthContextProvider>
+      <AuthContextProvider>{children}</AuthContextProvider>
     </QueryClientProvider>
   )
+}
+
+App.propTypes = {
+  children: PropTypes.element.isRequired,
 }
