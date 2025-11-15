@@ -23,6 +23,10 @@ export function RecipeShare() {
     <div style={{ padding: 8 }}>
       <Helmet>
         <title>RecipeShare</title>
+        <meta
+          name='description'
+          content='A recipe sharing platform full of posts regarding food recipes.'
+        />
       </Helmet>
       <Header />
       <br />

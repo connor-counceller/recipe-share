@@ -11,12 +11,24 @@ export function ViewRecipe({ recipeId }) {
     queryKey: ['recipe', recipeId],
     queryFn: () => getRecipeById(recipeId),
   })
+
   const recipe = recipeQuery.data
+
+  function truncate(str, max = 160) {
+    if (!str) return str
+    if (str.length > max) {
+      return str.slice(0, max - 3) + '...'
+    } else {
+      return str
+    }
+  }
+
   return (
     <div style={{ padding: 8 }}>
       {recipe && (
         <Helmet>
           <title>{recipe.title} | RecipeShare</title>
+          <meta name='description' content={truncate(recipe.ingrediants)} />
         </Helmet>
       )}
       <Header />
