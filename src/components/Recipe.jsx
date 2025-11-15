@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { User } from './User.jsx'
 import { Link } from 'react-router-dom'
+import slug from 'slug'
 
 export function Recipe({
   title,
@@ -18,7 +19,7 @@ export function Recipe({
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <img src={image} style={{ width: 96 }} alt={image} />
           {' | '}
-          <Link to={`/recipes/${_id}`}>{title}</Link>
+          <Link to={`/recipes/${_id}/${slug(title)}`}>{title}</Link>
           {' | '}
           {author && (
             <em>
