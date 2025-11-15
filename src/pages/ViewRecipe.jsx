@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Header } from '../components/Header.jsx'
 import { Recipe } from '../components/Recipe.jsx'
 import { getRecipeById } from '../api/recipes.js'
+import { Helmet } from 'react-helmet-async'
 
 export function ViewRecipe({ recipeId }) {
   const recipeQuery = useQuery({
@@ -13,6 +14,11 @@ export function ViewRecipe({ recipeId }) {
   const recipe = recipeQuery.data
   return (
     <div style={{ padding: 8 }}>
+      {recipe && (
+        <Helmet>
+          <title>{recipe.title} | RecipeShare</title>
+        </Helmet>
+      )}
       <Header />
       <br />
       <hr />

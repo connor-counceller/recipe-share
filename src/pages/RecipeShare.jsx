@@ -3,6 +3,7 @@ import { CreateRecipe } from '../components/CreateRecipe.jsx'
 import { RecipeFilter } from '../components/RecipeFilter.jsx'
 import { RecipeSorting } from '../components/RecipeSorting.jsx'
 import { Header } from '../components/Header.jsx'
+import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getRecipes } from '../api/recipes.js'
@@ -20,6 +21,9 @@ export function RecipeShare() {
 
   return (
     <div style={{ padding: 8 }}>
+      <Helmet>
+        <title>RecipeShare</title>
+      </Helmet>
       <Header />
       <br />
       <hr />
